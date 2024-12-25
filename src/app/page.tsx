@@ -8,7 +8,7 @@ import { Problem as ProblemType } from "@prisma/client";
 import Problem from "@/app/components/problem";
 import { Button } from "@/components/ui/button";
 import getProblems from "@/server/get-problems";
-import EmptyProblemCard from "./components/empty-problem-card";
+import EmptyProblemCard from "@/app/components/empty-problem-card";
 
 export default function Home() {
   const [problem, setProblem] = useState<ProblemType | null>(null);

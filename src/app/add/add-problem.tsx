@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import addProblem from "../../server/add-problem";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   number: z
@@ -38,6 +39,7 @@ const formSchema = z.object({
 
 export default function AddProblem() {
   const router = useRouter();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,8 +53,18 @@ export default function AddProblem() {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    await addProblem(data);
-    router.push("/");
+    addProblem(data).then((res) => {
+      if (res?.error) {
+        if (res.type === "number") {
+          form.setError("number", {
+            message: "Problem with this number already exists!",
+          });
+        }
+      } else {
+        toast({ title: "Problem added successfully!" });
+        router.push("/");
+      }
+    });
   };
 
   const goHome = () => {
