@@ -61,9 +61,7 @@ export default function AddProblem() {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit, (errors) => console.log(errors))}
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <Card>
           <CardHeader>
             <CardTitle>Add New Leetcode Problem</CardTitle>
