@@ -66,7 +66,7 @@ export default function AddProblem() {
       >
         <Card>
           <CardHeader>
-            <CardTitle>Leetcode Problem</CardTitle>
+            <CardTitle>Add New Leetcode Problem</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <FormField
@@ -74,7 +74,7 @@ export default function AddProblem() {
               name="number"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Problem #NO</FormLabel>
+                  <FormLabel>Problem # no</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -136,7 +136,9 @@ export default function AddProblem() {
             />
           </CardContent>
           <CardFooter>
-            <Button type="submit">Add</Button>
+            <Button className="w-full sm:w-fit" type="submit">
+              Add
+            </Button>
           </CardFooter>
         </Card>
       </form>

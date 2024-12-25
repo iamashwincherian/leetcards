@@ -1,12 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Problem from "./components/problem";
-import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import { RefreshCw } from "lucide-react";
 import { Problem as ProblemType } from "@prisma/client";
+
+import Problem from "@/app/components/problem";
+import { Button } from "@/components/ui/button";
 import getProblems from "@/server/get-problems";
-import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [problem, setProblem] = useState<ProblemType | null>(null);
@@ -38,11 +39,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col justify-center items-center m-6">
-      <p className="text-2xl font-semibold uppercase tracking-widest">
-        Leetcards
-      </p>
-
-      <div className="mt-6 w-full md:max-w-[500px]">
+      <div className="mt-3 w-full md:max-w-[500px]">
         {problem && <Problem problem={problem} />}
         <div className="flex flex-col items-center mt-6">
           <Button variant="outline" onClick={getUniqueProblem}>

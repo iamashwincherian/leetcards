@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import {
+  atomOneLight,
+  tomorrowNightBright,
+} from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { Problem as ProblemType } from "@prisma/client";
+import { useTheme } from "next-themes";
 
 import {
   Card,
@@ -12,11 +17,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Problem as ProblemType } from "@prisma/client";
 
 export default function Problem({ problem }: { problem: ProblemType }) {
   const { number, title, description, notes, solution } = problem;
-  console.log(problem);
+  const { theme } = useTheme();
   const [showCode, setShowCode] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
 
@@ -53,7 +57,9 @@ export default function Problem({ problem }: { problem: ProblemType }) {
                       padding: 15,
                     }}
                     language="python"
-                    style={atomOneLight}
+                    style={
+                      theme === "light" ? atomOneLight : tomorrowNightBright
+                    }
                   >
                     {solution}
                   </SyntaxHighlighter>
