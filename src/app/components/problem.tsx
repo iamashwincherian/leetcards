@@ -35,7 +35,9 @@ export default function Problem({ problem }: { problem: ProblemType }) {
         <CardTitle>
           {number}. {title}
         </CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription className="whitespace-pre-line">
+          {description}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="mt-3">
